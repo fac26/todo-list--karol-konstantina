@@ -32,8 +32,7 @@ gitGraph
 
 ## Testing
 
-Test-driven development is a methodology where you write tests before your code and follow an ongoing cycle of **fail, pass, and refactor.**<br>
-In this section you will find the tests and methods we have used and instructions on how to execute them.
+Test-driven development is a methodology where you write tests before your code and follow an ongoing cycle of **fail, pass, and refactor.** In this section you will find the tests and methods we have used and instructions on how to execute them.
 
 ## Project Acceptance Criteria
 
