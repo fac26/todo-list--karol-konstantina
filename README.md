@@ -4,8 +4,8 @@ The aim of this project is to build a to-do list tracker, allowing users to crea
 
 - A button to **create** a task,
 - A button to **delete** a task,
+- A checkbox to mark a task as **urgent**,
 - A checkbox to mark a task as **completed**,
-- A checkbox to mark a task as **urgent**.
 - A checkbox to **filter** completed tasks.
 
 ## *Workflow*
@@ -16,10 +16,13 @@ There are 4 branches: **main, html, css, testing**. The main branch is protected
     gitGraph
         commit
         branch html
+        checkout html
         commit
         branch css
+        checkout css
         commit
         branch testing
+        checkout testing
         commit
         checkout main
         commit
@@ -46,9 +49,22 @@ Test-driven development is the methodology of writing tests before your code and
     ...
   });
     ```
-    
 - Press /button/, run test 1,
 - Press /button/, run test 2, etc...
+
+<div align="center">
+
+```mermaid
+    graph TD
+    A[Write test]-->B[Write Code]-->C[Refactor Code]-->A
+
+    style A fill:#a12273
+    style B fill:#6a8993
+    style C fill:#9b5c35
+``` 
+(WIP)
+
+</div>
 
 ## *Project Acceptance Criteria*
 
