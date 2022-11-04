@@ -42,6 +42,8 @@ There are 4 branches: **main, html, css, testing**. The main branch is protected
 
 Test-driven development is the methodology of writing tests before your code and following an ongoing cycle of **fail, pass, and refactor.** In this section you will find the tests and methods we have used and instructions on how to execute them.
 
+<details>
+
 - Press /button/, enable debug mode,
 
     ```js
@@ -51,6 +53,8 @@ Test-driven development is the methodology of writing tests before your code and
     ```
 - Press /button/, run test 1,
 - Press /button/, run test 2, etc...
+
+</details>
 
 <div align="center">
 
