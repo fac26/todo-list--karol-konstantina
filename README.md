@@ -10,24 +10,32 @@ The aim of this project is to build a to-do list tracker, allowing users to crea
 
 ## *Workflow*
 
-There are 4 branches: **main, html, css, testing**. The main branch is protected and can only be committed to using pull requests. The branches will be pulled downstream and cycle back to main.
+There are 4 branches: **main, html, css, testing**.
 
 ```mermaid
     gitGraph
-        commit
         branch html
+        commit
+        checkout main
+        commit
         checkout html
-        commit
+        merge main
+        checkout main
         branch css
-        checkout css
         commit
+        checkout main
+        commit
+        checkout css
+        merge main
+        checkout main
         branch testing
-        checkout testing
         commit
         checkout main
         commit
         checkout testing
         merge main
+        checkout main
+        
  ```
  
 ## *Website Demo*
