@@ -14,6 +14,7 @@ There are 4 branches: **main, html, css, testing**.
 
 ```mermaid
     gitGraph
+        commit
         branch html
         commit
         checkout main
