@@ -81,10 +81,22 @@ Test-driven development is the methodology of writing tests before your code and
 
 ## _Project Acceptance Criteria_
 
-- A working to-do list,
-- Tests for each user story,
-- A responsive, mobile-first design,
-- Accessible to as many users as possible.
+- A working to-do list, [
+https://github.com/fac26/todo-list--karol-konstantina/issues/8
+]
+- Tests for each user story, [
+https://github.com/fac26/todo-list--karol-konstantina/issues/1 
+https://github.com/fac26/todo-list--karol-konstantina/issues/2 
+https://github.com/fac26/todo-list--karol-konstantina/issues/3 
+https://github.com/fac26/todo-list--karol-konstantina/issues/4 
+https://github.com/fac26/todo-list--karol-konstantina/issues/5
+]
+- A responsive, mobile-first design, [
+https://github.com/fac26/todo-list--karol-konstantina/issues/7
+]
+- Accessible to as many users as possible. [
+https://github.com/fac26/todo-list--karol-konstantina/issues/6
+]
 
 ## _Credits_
 
