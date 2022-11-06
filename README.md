@@ -8,7 +8,7 @@ The aim of this project is to build a to-do list tracker, allowing users to crea
 - A checkbox to mark a task as **completed**,
 - A checkbox to **filter** completed tasks.
 
-## *Workflow*
+## _Workflow_
 
 There are 4 branches: **main, html, css, testing**.
 
@@ -36,10 +36,10 @@ There are 4 branches: **main, html, css, testing**.
         checkout testing
         merge main
         checkout main
-        
- ```
- 
-## *Website Demo*
+
+```
+
+## _Website Demo_
 
 <div align=center">
 
@@ -47,7 +47,7 @@ There are 4 branches: **main, html, css, testing**.
 
 </div>
 
-## *Testing*
+## _Testing_
 
 Test-driven development is the methodology of writing tests before your code and following an ongoing cycle of **fail, pass, and refactor.** In this section you will find the tests and methods we have used and instructions on how to execute them.
 
@@ -55,11 +55,12 @@ Test-driven development is the methodology of writing tests before your code and
 
 - Press /button/, enable debug mode,
 
-    ```js
+  ```js
   window.addEventListener("keydown", (event) => {
-    ...
+  ...
   });
-    ```
+  ```
+
 - Press /button/, run test 1,
 - Press /button/, run test 2, etc...
 
@@ -69,27 +70,26 @@ Test-driven development is the methodology of writing tests before your code and
 
 ```mermaid
     graph TD
-    A[Write test]-->B[Write Code]-->C[Refactor Code]-->A
+    A[Fail]-->B[Pass]-->C[Refactor]-->A
 
     style A fill:#a12273
     style B fill:#6a8993
     style C fill:#9b5c35
-``` 
-(WIP)
+```
 
 </div>
 
-## *Project Acceptance Criteria*
+## _Project Acceptance Criteria_
 
 - A working to-do list,
 - Tests for each user story,
 - A responsive, mobile-first design,
 - Accessible to as many users as possible.
 
-## *Credits*
+## _Credits_
 
 This project is being built from the ground up by:
 
 <a href="https://github.com/fac26/todo-list--karol-konstantina/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=fac26/todo-list--karol-konstantina" />
+  <img src="https://contrib.rocks/image?repo=fac26/todo-list--karol-konstantina" width="100px"/>
 </a>
