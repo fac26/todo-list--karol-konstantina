@@ -1,4 +1,4 @@
-//debug mode - set to true to see console.log messages
+// <-- debug mode - set to true to see console.log messages -->
 
 // const debugButton = document.querySelector("#debug-button");
 // let debugMode = false;
