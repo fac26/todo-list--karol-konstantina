@@ -10,9 +10,10 @@ The aim of this project is to build a to-do list tracker, allowing users to crea
 
 ## _Code Review_
 
+The website is deployed from the testing-branch, not the main branch.
 Website link: https://fac26.github.io/todo-list--karol-konstantina/
 
-Debug mode doesn't work.
+Debug mode is not yet implemented for testing.
 
 ## _Workflow_
 
