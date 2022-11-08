@@ -8,39 +8,32 @@ The aim of this project is to build a to-do list tracker, allowing users to crea
 - A checkbox to mark a task as **completed**,
 - A checkbox to **filter** completed tasks.
 
-## _Code Review_
-
-The website is deployed from the testing-branch, not the main branch.
-Website link: https://fac26.github.io/todo-list--karol-konstantina/
-
-Debug mode is not yet implemented for testing.
-
 ## _Workflow_
 
-There are 4 branches: **main, html, css, testing**.
+There are 4 branches: **main, markup-and-styling, test, and function**.
 
 ```mermaid
     gitGraph
         commit
-        branch html
+        branch markup-and-styling
         commit
         checkout main
         commit
-        checkout html
+        checkout markup-and-styling
         merge main
         checkout main
-        branch css
+        branch test
         commit
         checkout main
         commit
-        checkout css
+        checkout test
         merge main
         checkout main
-        branch testing
+        branch function
         commit
         checkout main
         commit
-        checkout testing
+        checkout function
         merge main
         checkout main
 
