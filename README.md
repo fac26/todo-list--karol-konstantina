@@ -8,6 +8,12 @@ The aim of this project is to build a to-do list tracker, allowing users to crea
 - A checkbox to mark a task as **completed**,
 - A checkbox to **filter** completed tasks.
 
+## _Code Review_
+
+Website link: https://fac26.github.io/todo-list--karol-konstantina/
+
+Debug mode doesn't work.
+
 ## _Workflow_
 
 There are 4 branches: **main, html, css, testing**.
