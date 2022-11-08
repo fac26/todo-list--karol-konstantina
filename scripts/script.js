@@ -54,3 +54,9 @@ urgentButton.addEventListener("click", (e) => {
 editButton.addEventListener("click", (e) => {
 	e.preventDefault();
 });
+
+//my version of the newTask function so that you can run the test named ('Adds new task).
+//function newTask(){
+
+//};
+//document.getElementById("submitButton").addEventListener("click", newTask);
