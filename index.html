@@ -4,16 +4,29 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script src="scripts/testing.js" defer></script>
 		<script src="scripts/script.js" defer></script>
+		<script src="scripts/testing.js" defer></script>
 		<title>To-Do List</title>
 	</head>
 	<body>
-		<button id="debug-button">Debug Mode</button>
-		<button id="add-button">Add Task</button>
-    <button id="delete-button">Delete Task</button>
-    <button id="complete-button">Complete Task</button>
-    <button id="urgent-button">Urgent Task</button>
-    <button id="edit-button">Edit Task</button>
+		<main>
+			<button id="debug-button">Debug Mode</button>
+
+			<form class="add-task">
+				<label type="text" for="input">New Task:</label>
+				<input type="text" placeholder="new task" aria-label="new task" />
+				<button id="add-button">Add Task</button>
+			</form>
+
+      <ul class="list">
+				<!-- EXAMPLE TESTING ITEM -- CHANGE TO <TEMPLATE> IN FINAL -->
+				<!-- <li class="list-item">New Task</li> -->
+			</ul>
+
+			<button id="delete-button">Delete Task</button>
+			<button id="complete-button">Complete Task</button>
+			<button id="urgent-button">Urgent Task</button>
+			<button id="edit-button">Edit Task</button>
+		</main>
 	</body>
 </html>
