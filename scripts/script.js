@@ -1,9 +1,14 @@
+//get buttons
+
 const debugButton = document.querySelector("#debug-button");
 const addButton = document.querySelector("#add-button");
 const deleteButton = document.querySelector("#delete-button");
 const completeButton = document.querySelector("#complete-button");
 const urgentButton = document.querySelector("#urgent-button");
 const editButton = document.querySelector("#edit-button");
+
+const input = document.querySelector("input");
+const list = document.querySelector("ul");
 
 //  <-- debug mode - set to true to see console.log messages -->
 let debugMode = false;
@@ -12,33 +17,43 @@ debugButton.addEventListener("click", (e) => {
 	//on debug button click, toggle debug mode
 	if (debugMode) {
 		debugMode = false;
+		console.log("Debug mode off");
 		debugButton.innerHTML = "Debug Mode: Off";
 	} else {
 		debugMode = true;
+		console.log("Debug mode on");
 		debugButton.innerHTML = "Debug Mode: On";
 	}
 });
 
 //  <-- function to log messages to the console only in debug mode (use instead of console.log in testing) -->
-const log = (message) => {
-	if (debugMode) {
-		console.log(message);
-	}
-};
+// const log = (message) => {
+// 	if (debugMode) {
+// 		console.log(message);
+// 	}
+// };
 
 //  <-- addTask function (add a task to the list) -->
-addButton.addEventListener("click", (e) => {
-	e.preventDefault();
 
-	(function functionName() {
-		log("functionName function called");
-	})();
-});
+(function addTask(newTask) {
+	addButton.addEventListener("click", (e) => {
+		e.preventDefault();
+		if (input.value === "") {
+			alert("Please enter a task"); //convert to
+		} else {
+			newTask = list.appendChild(document.createElement("li"));
+			newTask.innerText = input.value;
+		}
+	});
+})();
 
 //  <-- deleteTask function (delete a task from the list) -->
-deleteButton.addEventListener("click", (e) => {
-	e.preventDefault();
-});
+
+(function deleteTask() {
+	deleteButton.addEventListener("click", (e) => {
+		e.preventDefault();
+	});
+})();
 
 //  <-- completeTask function (mark a task as complete) -->
 completeButton.addEventListener("click", (e) => {
@@ -54,7 +69,8 @@ urgentButton.addEventListener("click", (e) => {
 editButton.addEventListener("click", (e) => {
 	e.preventDefault();
 });
-//my version of newTask so that you can run test ('Adds new task)
+
+//my version of the newTask function so that you can run the test named ('Adds new task).
 //function newTask(){
 
 //};
