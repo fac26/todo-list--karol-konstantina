@@ -1,12 +1,9 @@
-//get buttons
-
 const debugButton = document.querySelector("#debug-button");
 const addButton = document.querySelector("#add-button");
 const deleteButton = document.querySelector("#delete-button");
 const completeButton = document.querySelector("#complete-button");
 const urgentButton = document.querySelector("#urgent-button");
 const editButton = document.querySelector("#edit-button");
-
 const input = document.querySelector("input");
 const list = document.querySelector("ul");
 
@@ -56,22 +53,22 @@ debugButton.addEventListener("click", (e) => {
 })();
 
 //  <-- completeTask function (mark a task as complete) -->
-completeButton.addEventListener("click", (e) => {
-	e.preventDefault();
-});
+(function completeTask() {
+	completeButton.addEventListener("click", (e) => {
+		e.preventDefault();
+	});
+})();
 
 //  <-- urgentTask function (mark as urgent) -->
-urgentButton.addEventListener("click", (e) => {
-	e.preventDefault();
-});
+(function urgentTask() {
+	urgentButton.addEventListener("click", (e) => {
+		e.preventDefault();
+	});
+})();
 
 //  <-- editTask function (edit the contents of a task) -->
-editButton.addEventListener("click", (e) => {
-	e.preventDefault();
-});
-
-//my version of the newTask function so that you can run the test named ('Adds new task).
-//function newTask(){
-
-//};
-//document.getElementById("submitButton").addEventListener("click", newTask);
+(function editTask() {
+	editButton.addEventListener("click", (e) => {
+		e.preventDefault();
+	});
+})();
