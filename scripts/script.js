@@ -1,74 +1,99 @@
 const debugButton = document.querySelector("#debug-button");
 const addButton = document.querySelector("#add-button");
+const input = document.querySelector("input");
+const list = document.querySelector("ul");
+
+// <--- Testing buttons (probably useless) --->
 const deleteButton = document.querySelector("#delete-button");
 const completeButton = document.querySelector("#complete-button");
 const urgentButton = document.querySelector("#urgent-button");
 const editButton = document.querySelector("#edit-button");
-const input = document.querySelector("input");
-const list = document.querySelector("ul");
 
-//  <-- debug mode - set to true to see console.log messages -->
+// <--- debug mode (set to true to see console.log messages) --->
 let debugMode = false;
 
+// <====== Functions ======>
+
+// <--- addTask function (add a task to the list) --->
+function addTask(newTask) {
+	//take the input value and add it to the list
+	// unsure {
+	// create and append delete button to the new Task
+	// create and append complete button to the new Task
+	// create and append urgent button to the new Task
+	// create and append edit button to the new Task
+	// }
+	// create list item
+	// append list item to list
+	// clear input
+}
+
+// <--- deleteTask function (delete a task from the list) --->
+function deleteTask(task) {
+	//remove the parent task from the list
+}
+
+// <--- completeTask function (complete a task) --->
+function completeTask(task) {
+	// add a strike-through to the parent task
+	// add id to the parent task to indicate it is complete
+	// add a class to the task to indicate it is complete
+}
+
+// <--- urgentTask function (make a task urgent) --->
+function urgentTask(task) {
+	// add a class to the task to indicate it is urgent
+}
+
+// <--- editTask function (edit a task) --->
+function editTask(task) {
+	//convert the task to an input field
+	//add a save button to the task
+	//add a cancel button to the task
+}
+
+// <===== Event Listeners ======>
+
+// <--- debugMode listener --->
 debugButton.addEventListener("click", (e) => {
 	//on debug button click, toggle debug mode
 	if (debugMode) {
 		debugMode = false;
 		console.log("Debug mode off");
-		debugButton.innerHTML = "Debug Mode: Off";
+		debugButton.innerText = "Debug Mode: Off";
 	} else {
 		debugMode = true;
 		console.log("Debug mode on");
-		debugButton.innerHTML = "Debug Mode: On";
+		debugButton.innerText = "Debug Mode: On";
 	}
 });
 
-//  <-- function to log messages to the console only in debug mode (use instead of console.log in testing) -->
-// const log = (message) => {
-// 	if (debugMode) {
-// 		console.log(message);
-// 	}
-// };
+// <--- addTask listener --->
+addButton.addEventListener("click", (e) => {
+	e.preventDefault();
+	// if input has a value add task with that value otherwise alert user
+});
 
-//  <-- addTask function (add a task to the list) -->
+// <--- deleteTask listener --->
+deleteButton.addEventListener("click", (e) => {
+	e.preventDefault();
+	//on click of delete button, delete the associated task
+});
 
-(function addTask(newTask) {
-	addButton.addEventListener("click", (e) => {
-		e.preventDefault();
-		if (input.value === "") {
-			alert("Please enter a task"); //convert to
-		} else {
-			newTask = list.appendChild(document.createElement("li"));
-			newTask.innerText = input.value;
-		}
-	});
-})();
+// <--- completeTask listener --->
+completeButton.addEventListener("click", (e) => {
+	e.preventDefault();
+	//on click of complete button, mark the associated task as complete
+});
 
-//  <-- deleteTask function (delete a task from the list) -->
-
-(function deleteTask() {
-	deleteButton.addEventListener("click", (e) => {
-		e.preventDefault();
-	});
-})();
-
-//  <-- completeTask function (mark a task as complete) -->
-(function completeTask() {
-	completeButton.addEventListener("click", (e) => {
-		e.preventDefault();
-	});
-})();
-
-//  <-- urgentTask function (mark as urgent) -->
-(function urgentTask() {
-	urgentButton.addEventListener("click", (e) => {
-		e.preventDefault();
-	});
-})();
+//  <-- urgentTask listener -->
+urgentButton.addEventListener("click", (e) => {
+	e.preventDefault();
+	//on click of urgent button, mark the associated task as urgent
+});
 
 //  <-- editTask function (edit the contents of a task) -->
-(function editTask() {
-	editButton.addEventListener("click", (e) => {
-		e.preventDefault();
-	});
-})();
+editButton.addEventListener("click", (e) => {
+	e.preventDefault();
+	//on click of edit button, allow the user to edit the associated task
+});
