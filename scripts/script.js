@@ -1,7 +1,7 @@
 const debugButton = document.querySelector("#debug-button");
 const addButton = document.querySelector("#add-button");
 const input = document.querySelector("input");
-const list = document.querySelector("ul");
+const taskList = document.querySelector("ul");
 
 // <--- Testing buttons (probably useless) --->
 const deleteButton = document.querySelector("#delete-button");
@@ -15,8 +15,15 @@ let debugMode = false;
 // <====== Functions ======>
 
 // <--- addTask function (add a task to the list) --->
-function addTask(newTask) {
-	//take the input value and add it to the list
+function addTask(string) {
+	// string passed into the function is the task to be added, otherwise the task is from the input field
+	let task = string || input.value;
+	if (!task) return;
+	const listItem = document.createElement("li");
+	listItem.innerText = task;
+	taskList.append(listItem);
+	input.value = "";
+	return task;
 	// unsure {
 	// create and append delete button to the new Task
 	// create and append complete button to the new Task
@@ -27,7 +34,6 @@ function addTask(newTask) {
 	// append list item to list
 	// clear input
 }
-
 // <--- deleteTask function (delete a task from the list) --->
 function deleteTask(task) {
 	//remove the parent task from the list
@@ -71,6 +77,7 @@ debugButton.addEventListener("click", (e) => {
 // <--- addTask listener --->
 addButton.addEventListener("click", (e) => {
 	e.preventDefault();
+	addTask();
 	// if input has a value add task with that value otherwise alert user
 });
 
