@@ -15,21 +15,38 @@ function test(name, testFunction) {
 }
 
 debugButton.addEventListener("click", (e) => {
-	if (debugMode) {
+	debugMode;
+
+	test("addTask() function", () => {
+		const testValue = (input.value = "Test Task");
+		const testTask = addTask(testValue);
+
 		test("addTask() returns the added task", () => {
-			equal(addTask("Test"), "Test", "addTask() should return the task that was added");
+			const result = testTask;
+			const expected = "Test Task";
+			equal(result, expected, `addTask returned "${expected}"`);
 		});
 
 		test("addTask() should add a new task to the list", () => {
-			if (taskList.lastChild.innerText === "Test") {
-				result = true;
-			}
+			const result = taskList.lastChild.innerText;
+			const expected = testValue;
+			equal(result, expected, "addTask added a new task to the list");
 		});
-	}
-	//undo all changes made while in debug mode
+
+		test("addTask() should clear the input field", () => {
+			const result = input.value;
+			const expected = "";
+			equal(result, expected, "addTask cleared the input field");
+		});
+	});
+
 	if (!debugMode) {
 		input.value = "";
 		taskList.innerHTML = "";
-		debugMode = false;
 	}
 });
+
+// test("Debug Mode", () => {
+// 	equal(debugMode, true, "Debug mode is on");
+// 	equal(debugButton.innerText, "Debug Mode: On", "Debug button text is correct'");
+// });

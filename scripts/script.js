@@ -9,15 +9,13 @@ const completeButton = document.querySelector("#complete-button");
 const urgentButton = document.querySelector("#urgent-button");
 const editButton = document.querySelector("#edit-button");
 
-// <--- debug mode (set to true to see console.log messages) --->
 let debugMode = false;
 
 // <====== Functions ======>
 
 // <--- addTask function (add a task to the list) --->
 function addTask(string) {
-	// string passed into the function is the task to be added, otherwise the task is from the input field
-	let task = string || input.value;
+	const task = input.value;
 	if (!task) return;
 	const listItem = document.createElement("li");
 	listItem.innerText = task;
