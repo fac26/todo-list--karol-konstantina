@@ -42,15 +42,6 @@ debugButton.addEventListener("click", (e) => {
 			equal(result, expected, `"${expected}" task has been added to the list`);
 		});
 		//}, 1000);
-
-		test("addTask() should add a delete button to the new task", () => {
-			// result should be if the last task in the list has a delete button
-			const result = taskList.children[0].children[1].id === "delete";
-			const expected = true;
-			equal(result, expected, "Last task in the list has a delete button");
-		});
-
-		test("completetask() should mark a task as complete", () => {});
 	});
 
 	if (!debugMode) {

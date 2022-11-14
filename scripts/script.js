@@ -19,21 +19,10 @@ function addTask(string) {
 	input.value = "";
 
 	// <--- Create buttons --->
-	const deleteButton = document.createElement("button");
-	deleteButton.id = "delete";
-	deleteButton.innerText = "Delete";
-	listItem.append(deleteButton);
-	deleteButton.addEventListener("click", (e) => {
-		deleteTask(listItem);
-	});
-
-	const completeButton = document.createElement("button");
-	completeButton.id = "complete";
-	completeButton.innerText = "Complete";
-	listItem.append(completeButton);
-	completeButton.addEventListener("click", (e) => {
-		completeTask(listItem);
-	});
+	const deleteButton = buttonFactory({ id: "delete", text: "Delete" }, deleteTask, listItem);
+	const completeButton = buttonFactory({ id: "complete", text: "Complete" }, completeTask, listItem);
+	const urgentButton = buttonFactory({ id: "urgent", text: "Urgent" }, urgentTask, listItem);
+	const editButton = buttonFactory({ id: "edit", text: "Edit" }, editTask, listItem);
 
 	return task;
 	// unsure {
@@ -84,3 +73,19 @@ debugButton.addEventListener("click", (e) => {
 	debugMode ? (debugMode = false) : (debugMode = true);
 	debugMode ? (debugButton.innerText = "Debug Mode: On") : (debugButton.innerText = "Debug Mode: Off");
 });
+
+// <====== Factories! ======>
+
+// function taskFactory() {
+// }
+
+function buttonFactory({ id, text }, callback, parent) {
+	const button = document.createElement("button");
+	[button.id, button.innerText] = [id, text];
+	parent.append(button);
+	button.addEventListener("click", (e) => {
+		callback(parent);
+	});
+
+	return button;
+}
