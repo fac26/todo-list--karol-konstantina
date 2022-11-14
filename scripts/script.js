@@ -3,12 +3,6 @@ const addButton = document.querySelector("#add-button");
 const input = document.querySelector("input");
 const taskList = document.querySelector("ul");
 
-// <--- Testing buttons (probably useless) --->
-const deleteButton = document.querySelector("#delete-button");
-const completeButton = document.querySelector("#complete-button");
-const urgentButton = document.querySelector("#urgent-button");
-const editButton = document.querySelector("#edit-button");
-
 let debugMode = false;
 
 // <====== Functions ======>
@@ -18,9 +12,14 @@ function addTask(string) {
 	const task = input.value;
 	if (!task) return;
 	const listItem = document.createElement("li");
-	listItem.innerText = task;
+	const listText = document.createElement("p");
+	listText.innerText = task;
+	listItem.append(listText);
 	taskList.append(listItem);
 	input.value = "";
+
+	// <--- Add buttons to the task --->
+	deleteTask(listItem);
 	return task;
 	// unsure {
 	// create and append delete button to the new Task
@@ -32,9 +31,15 @@ function addTask(string) {
 	// append list item to list
 	// clear input
 }
-// <--- deleteTask function (delete a task from the list) --->
+// <--- deleteTask function (delete a task from the list) --->}
+
 function deleteTask(task) {
-	//remove the parent task from the list
+	const deleteButton = document.createElement("button");
+	deleteButton.innerText = "Delete";
+	task.append(deleteButton);
+	deleteButton.addEventListener("click", () => {
+		task.remove();
+	});
 }
 
 // <--- completeTask function (complete a task) --->
@@ -58,47 +63,14 @@ function editTask(task) {
 
 // <===== Event Listeners ======>
 
-// <--- debugMode listener --->
-debugButton.addEventListener("click", (e) => {
-	//on debug button click, toggle debug mode
-	if (debugMode) {
-		debugMode = false;
-		console.log("Debug mode off");
-		debugButton.innerText = "Debug Mode: Off";
-	} else {
-		debugMode = true;
-		console.log("Debug mode on");
-		debugButton.innerText = "Debug Mode: On";
-	}
-});
-
 // <--- addTask listener --->
 addButton.addEventListener("click", (e) => {
 	e.preventDefault();
-	addTask();
-	// if input has a value add task with that value otherwise alert user
+	input.value !== "" ? addTask() : alert("No task entered");
 });
 
-// <--- deleteTask listener --->
-deleteButton.addEventListener("click", (e) => {
-	e.preventDefault();
-	//on click of delete button, delete the associated task
-});
-
-// <--- completeTask listener --->
-completeButton.addEventListener("click", (e) => {
-	e.preventDefault();
-	//on click of complete button, mark the associated task as complete
-});
-
-//  <-- urgentTask listener -->
-urgentButton.addEventListener("click", (e) => {
-	e.preventDefault();
-	//on click of urgent button, mark the associated task as urgent
-});
-
-//  <-- editTask function (edit the contents of a task) -->
-editButton.addEventListener("click", (e) => {
-	e.preventDefault();
-	//on click of edit button, allow the user to edit the associated task
+// <--- debugMode listener --->
+debugButton.addEventListener("click", (e) => {
+	debugMode ? (debugMode = false) : (debugMode = true);
+	debugMode ? (debugButton.innerText = "Debug Mode: On") : (debugButton.innerText = "Debug Mode: Off");
 });
