@@ -19,6 +19,9 @@ debugButton.addEventListener("click", (e) => {
 	const testValue = (input.value = "Test Task");
 	const testTask = addTask(testValue);
 
+	const testValue2 = (input.value = "Test Task 2");
+	const testTask2 = addTask(testValue2);
+
 	test("add Task", () => {
 		test("addTask() returns the added task", () => {
 			const result = testTask;
@@ -32,22 +35,22 @@ debugButton.addEventListener("click", (e) => {
 			equal(result, expected, "Input field has been cleared");
 		});
 
+		//setTimeout(() => {
 		test("addTask() should add a new task to the list", () => {
-			const result = taskList.lastChild.firstChild.innerText;
+			const result = taskList.children[0].children[0].innerText;
 			const expected = testValue;
-			equal(result, expected, `Last task in the list is the "${expected}" task`);
+			equal(result, expected, `"${expected}" task has been added to the list`);
 		});
+		//}, 1000);
 
 		test("addTask() should add a delete button to the new task", () => {
 			// result should be if the last task in the list has a delete button
-			const result = taskList.innerHTML.includes("Delete");
+			const result = taskList.children[0].children[1].id === "delete";
 			const expected = true;
 			equal(result, expected, "Last task in the list has a delete button");
 		});
-	});
 
-	test("delete Task", () => {
-		test("deleteTask() should remove the task from the list", () => {});
+		test("completetask() should mark a task as complete", () => {});
 	});
 
 	if (!debugMode) {
@@ -67,3 +70,15 @@ debugButton.addEventListener("click", (e) => {
 //   equal(result, expected, "Tasks have been added to local storage");
 // });
 /// let tasksArray = []; tasksArray.push(task);
+
+// BUGGY TEST
+// test("delete Task", () => {
+// 	test("deleteTask() should remove the task from the list", () => {
+// 		const secondTask = taskList.children[1];
+// 		const deleteButton = secondTask.querySelector("#delete");
+// 		deleteButton.click();
+// 		const result = taskList.innerHTML.includes(testValue2);
+// 		const expected = false;
+// 		equal(result, expected, "Task has been removed from the list");
+// 	});
+// });

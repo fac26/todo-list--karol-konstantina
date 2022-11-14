@@ -18,8 +18,23 @@ function addTask(string) {
 	taskList.append(listItem);
 	input.value = "";
 
-	// <--- Add buttons to the task --->
-	deleteTask(listItem);
+	// <--- Create buttons --->
+	const deleteButton = document.createElement("button");
+	deleteButton.id = "delete";
+	deleteButton.innerText = "Delete";
+	listItem.append(deleteButton);
+	deleteButton.addEventListener("click", (e) => {
+		deleteTask(listItem);
+	});
+
+	const completeButton = document.createElement("button");
+	completeButton.id = "complete";
+	completeButton.innerText = "Complete";
+	listItem.append(completeButton);
+	completeButton.addEventListener("click", (e) => {
+		completeTask(listItem);
+	});
+
 	return task;
 	// unsure {
 	// create and append delete button to the new Task
@@ -31,16 +46,11 @@ function addTask(string) {
 	// append list item to list
 	// clear input
 }
-// <--- deleteTask function (delete a task from the list) --->}
 
-function deleteTask(task) {
-	const deleteButton = document.createElement("button");
-	deleteButton.innerText = "Delete";
-	task.append(deleteButton);
-	deleteButton.addEventListener("click", () => {
-		task.remove();
-	});
-}
+// <--- deleteTask function (delete a task from the list) --->
+const deleteTask = (task) => {
+	task.remove();
+};
 
 // <--- completeTask function (complete a task) --->
 function completeTask(task) {
