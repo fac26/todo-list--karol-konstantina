@@ -67,8 +67,9 @@ function editTask(task) {
 	taskInput.value = taskText.innerText;
 	task.replaceChild(taskInput, taskText);
 	taskInput.focus();
-	// Add a save button
-	// Add a cancel button
+
+	// <- Add a save button ->
+	// <- Add a cancel button ->
 }
 
 // <===== EVENT LISTENERS ======>
@@ -76,6 +77,7 @@ function editTask(task) {
 // <--- Add button listener --->
 addButton.addEventListener("click", (e) => {
 	e.preventDefault();
+
 	// <- Check if the input field is empty, focus if it is ->
 	input.value !== "" ? addTask() : input.focus();
 });
@@ -114,12 +116,12 @@ function buttonFactory({ id, text, func }) {
 // <--- don't know about this one --->
 // function taskFactory()) {
 //   const task = input.value;
-// 	if (!task) return;
-// 	const listItem = document.createElement("li");
-// 	const listText = document.createElement("p");
-// 	listText.innerText = task;
-// 	listItem.append(listText);
-// 	taskList.append(listItem);
-// 	input.value = "";
-//  return task;
+// 	 if (!task) return;
+// 	 const listItem = document.createElement("li");
+// 	 const listText = document.createElement("p");
+// 	 listText.innerText = task;
+// 	 listItem.append(listText);
+//   taskList.append(listItem);
+//   input.value = "";
+//   return task;
 // }

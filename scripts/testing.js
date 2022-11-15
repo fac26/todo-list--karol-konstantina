@@ -112,3 +112,42 @@ function runTests() {
 // 		equal(result, expected, "Task has been removed from the list");
 // 	});
 // });
+
+// <====== DISTANT FUTURE TESTS ======>
+
+// <--- Test 7: clearCompleted function --->
+// test("clearCompleted()", () => {
+//   <- Test 7.1: remove all completed tasks ->
+// });
+
+// <--- Test 8: clearAll function --->
+// test("clearAll()", () => {
+//  <- Test 8.1: remove all tasks ->
+// });
+
+// <--- Test 9: saveTasks function --->
+// test("saveTasks()", () => {
+// 	<- Test 9.1: save tasks to local storage ->
+// });
+
+// <--- Test 10: loadTasks function --->
+// test("loadTasks()", () => {
+// 	<- Test 10.1: load tasks from local storage ->
+// });
+
+// <--- Test 11: filterTasks function --->
+// test("filterTasks()", () => {
+// 	<- Test 11.1: filter tasks by urgent ->
+// 	<- Test 11.2: filter tasks by completed ->
+// });
+
+// <--- Test 12: sortTasks function --->
+// test("sortTasks()", () => {
+// 	<- Test 12.1: sort tasks by urgent ->
+// 	<- Test 12.2: sort tasks by completed ->
+// });
+
+// <--- Test 13: toggleDarkMode function --->
+// test("toggleDarkMode()", () => {
+// 	<- Test 13.1: toggle dark mode ->
+// });
