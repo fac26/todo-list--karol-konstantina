@@ -22,12 +22,17 @@ function createListItem(task) {
 		{ id: "complete", text: "Complete", func: completeTask },
 		{ id: "urgent", text: "Urgent", func: urgentTask },
 		{ id: "edit", text: "Edit", func: editTask },
+		//{ id: "cancel", text: "Cancel", func: cancelTask },
+		//{ id: "save", text: "Save", func: saveTask },
 	];
 
 	// <- Add buttons to the new task ->
 	buttons.forEach((button) => {
 		const buttonElement = buttonFactory(button);
 		listItem.append(buttonElement);
+		//if (button.id === "cancel" || "save") {
+		//	buttonElement.classList.toggle("hidden");
+		//}
 	});
 
 	// <- Return the new task ->
@@ -43,7 +48,9 @@ function addTask(task) {
 }
 
 // <--- Delete the task --->
-const deleteTask = (task) => task.remove();
+const deleteTask = (task) => {
+	task.remove();
+};
 
 // <--- Mark the task as completed --->
 function completeTask(task) {
@@ -63,16 +70,35 @@ function urgentTask(task) {
 
 // <--- Edit the task --->
 function editTask(task) {
-	// <- Convert the task to an input field ->
-	const taskText = task.querySelector("p");
-	const taskInput = document.createElement("input");
-	taskInput.value = taskText.innerText;
-	task.replaceChild(taskInput, taskText);
-	taskInput.focus();
+	const text = task.querySelector("p");
+	const savedText = text.innerText;
 
-	// <- Add a save button ->
-	// <- Add a cancel button ->
+	// <- Show the save and cancel buttons ->
+	// saveButton.classList.toggle("hidden");
+	// cancelButton.classList.toggle("hidden");
+
+	// <- Convert the task to an input field and focus on it ->
+	const input = document.createElement("input");
+	input.value = text.innerText;
+	task.replaceChild(input, text);
+	input.focus();
 }
+
+// <===== HELPER FUNCTIONS =====>
+
+// function saveTask(task) {
+// 	// <- Convert the input field back to a task ->
+// 	const text = document.createElement("p");
+// 	text.innerText = input.value;
+// 	task.replaceChild(text, input);
+// }
+
+// function cancelTask(task) {
+// 	// <- Convert the input field back to a task ->
+// 	const text = document.createElement("p");
+// 	text.innerText = savedText;
+// 	task.replaceChild(text, input);
+// }
 
 // <===== EVENT LISTENERS ======>
 

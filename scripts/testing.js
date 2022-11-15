@@ -101,13 +101,28 @@ function runTests() {
 
 	// <--- Test 5: editTask function --->
 	test("editTask()", () => {
+		input.value = "Edited Task";
+		addButton.click();
+		const task = taskList.querySelector("#task-3");
 		// <- Test 5.1: convert task to input field ->
-		// <- Test 5.2: add save button ->
-		// <- Test 5.3: add cancel button ->
-		// <- Test 5.4: save button should save changes ->
-		// <- Test 5.7: save button should remove save and cancel buttons ->
-		// <- Test 5.5: cancel button should convert input field back to task ->
-		// <- Test 5.6: cancel button should remove save and cancel buttons ->
+		test("editTask() should convert the task to an input field", () => {
+			const editButton = task.querySelector("#edit");
+			editButton.click();
+			const result = task.querySelector("input").nodeName;
+			const expected = "INPUT";
+			equal(result, expected);
+		});
+
+		// <- Test 5.2: task should save if de-focused ->
+		test("editTask() should save the task if the input field is de-focused", () => {
+			const input = task.querySelector("input");
+			input.value = "Saved Task";
+			input.blur();
+      const query = task.querySelector("p");
+			const result = inputField.value;
+			const expected = "Saved Task";
+			equal(result, expected);
+		});
 	});
 
 	// <--- Test 6: deleteTask function --->
