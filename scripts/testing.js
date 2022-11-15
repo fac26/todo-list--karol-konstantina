@@ -1,12 +1,10 @@
 // <====== TEST HELPERS ======>
 
-function equal(actual, expected, message) {
-	if (actual === expected) {
-		console.info("Pass: " + (message || `Expected ${expected} and received ${actual}`));
-	} else {
-		console.error("Fail: " + (message || `Expected ${expected} but received ${actual} instead`));
-	}
-}
+const equal = (actual, expected, message) => {
+	actual === expected
+		? console.info("Pass: " + (message || `Expected ${expected} and received ${actual}`))
+		: console.error("Fail: " + (message || `Expected ${expected} but received ${actual} instead`));
+};
 
 function test(name, testFunction) {
 	console.group(name);
@@ -17,23 +15,23 @@ function test(name, testFunction) {
 // <====== TESTS ======>
 
 function runTests() {
-	const testValue = (input.value = "Test Task");
-	const testTask = addTask(testValue);
-
 	// <--- Test 1: addTask function --->
 	test("add Task", () => {
+		input.value = "Testing Task";
+		addButton.click();
+		const task = taskList.querySelector("#task-0");
 		// <- Test 1.1: clear input field ->
 		test("addTask() should clear the input field", () => {
-			const result = input.value;
-			const expected = "";
-			equal(result, expected, "Input field has been cleared");
+			const result = `"${input.value}"`;
+			const expected = '""';
+			equal(result, expected);
 		});
 
 		// <- Test 1.2: add task to list ->
 		test("addTask() should add a new task to the list", () => {
-			const result = taskList.children.length > 0;
+			const result = taskList.contains(task);
 			const expected = true;
-			equal(result, expected, `New task has been added to the list`);
+			equal(result, expected);
 		});
 	});
 
@@ -41,27 +39,64 @@ function runTests() {
 	test("buttonFactory()", () => {
 		// <- Test 2.1: create a button ->
 		test("buttonFactory() should create a button", () => {
-			let result = buttonFactory({ id: "test", text: "Test", func: () => {} });
-			result = result.nodeName;
+			const result = buttonFactory({ id: "test", text: "Test" }).nodeName;
 			const expected = "BUTTON";
-			equal(result, expected, `Button has been created`);
+			equal(result, expected);
 		});
 
-		// <- Test 2.2: assign id to button ->
-		// <- Test 2.3: assign text to button ->
-		// <- Test 2.4: assign function to button ->
+		// <- Test 2.2: assign elements to button ->
+		test("buttonFactory() should assign id and text to the button", () => {
+			const button = buttonFactory({ id: "button-id", text: "testButton" });
+			const result = `"${button.id}, ${button.innerText}"`;
+			const expected = `"button-id, testButton"`;
+			equal(result, expected);
+		});
 	});
 
 	// <--- Test 3: completeTask function --->
 	test("completeTask()", () => {
+		input.value = "Completed Task";
+		addButton.click();
+		const task = taskList.querySelector("#task-1");
 		// <- Test 3.1: toggle completed class ->
+		test("completeTask() should toggle the completed class", () => {
+			completeTask(task);
+			const result = task.classList.contains("completed");
+			const expected = true;
+			equal(result, expected);
+
+			return task;
+		});
 		// <- Test 3.2: move task to bottom of list ->
+		test("completeTask() should move the task to the bottom of the list", () => {
+			const completeButton = task.querySelector("#complete");
+			completeButton.click();
+			const result = taskList.lastChild.id;
+			const expected = "task-1";
+			equal(result, expected);
+		});
 	});
 
 	// <--- Test 4: urgentTask function --->
 	test("urgentTask()", () => {
+		input.value = "Urgent Task";
+		addButton.click();
+		const task = taskList.querySelector("#task-2");
 		// <- Test 4.1: toggle urgent class ->
+		test("urgentTask() should toggle the urgent class", () => {
+			urgentTask(task);
+			const result = task.classList.contains("urgent");
+			const expected = true;
+			equal(result, expected);
+		});
 		// <- Test 4.2: move task to top of list ->
+		test("urgentTask() should move the task to the top of the list", () => {
+			const urgentButton = task.querySelector("#urgent");
+			urgentButton.click();
+			const result = taskList.firstChild.id;
+			const expected = "task-2";
+			equal(result, expected);
+		});
 	});
 
 	// <--- Test 5: editTask function --->

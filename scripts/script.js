@@ -7,11 +7,12 @@ let debugMode = false;
 
 // <====== FUNCTIONS ======>
 
-// <--- Create a new list item with elements --->
+// <--- Create a new list item with buttons --->
 function createListItem(task) {
 	// <- Create the list item ->
 	const listItem = document.createElement("li");
 	const listText = document.createElement("p");
+	listItem.id = "task-" + taskList.childElementCount;
 	listText.innerText = task;
 	listItem.append(listText);
 
@@ -29,6 +30,7 @@ function createListItem(task) {
 		listItem.append(buttonElement);
 	});
 
+	// <- Return the new task ->
 	return listItem;
 }
 
@@ -79,7 +81,7 @@ addButton.addEventListener("click", (e) => {
 	e.preventDefault();
 
 	// <- Check if the input field is empty, focus if it is ->
-	input.value !== "" ? addTask() : input.focus();
+	input.value === "" ? input.focus() : addTask();
 });
 
 // <--- Debug mode listener --->
