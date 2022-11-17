@@ -22,20 +22,17 @@ function createListItem(task) {
 		{ id: "complete", text: "Complete", func: completeTask },
 		{ id: "urgent", text: "Urgent", func: urgentTask },
 		{ id: "edit", text: "Edit", func: editTask },
-		//{ id: "cancel", text: "Cancel", func: cancelTask },
-		//{ id: "save", text: "Save", func: saveTask },
+		//? { id: "cancel", text: "Cancel", func: cancelTask },
+		//? { id: "save", text: "Save", func: saveTask },
 	];
 
 	// <- Add buttons to the new task ->
 	buttons.forEach((button) => {
 		const buttonElement = buttonFactory(button);
 		listItem.append(buttonElement);
-		//if (button.id === "cancel" || "save") {
-		//	buttonElement.classList.toggle("hidden");
-		//}
+		//? if (button.id === "cancel" || "save") { buttonElement.classList.toggle("hidden"); }
 	});
 
-	// <- Return the new task ->
 	return listItem;
 }
 
@@ -53,78 +50,111 @@ const deleteTask = (task) => {
 };
 
 // <--- Mark the task as completed --->
-function completeTask(task) {
+const completeTask = (task) => {
 	task.classList.toggle("completed");
-
-	// <- Move the task to the bottom of the list ->
 	taskList.append(task);
-}
+};
 
 // <--- Mark the task as urgent --->
-function urgentTask(task) {
+const urgentTask = (task) => {
 	task.classList.toggle("urgent");
-
-	// <- Move the task to the top of the list ->
 	taskList.prepend(task);
-}
+};
 
-// <--- Edit the task --->
+// <--- Edit the task ---> //!not dry
 function editTask(task) {
 	const text = task.querySelector("p");
 	const savedText = text.innerText;
 
-	// <- Show the save and cancel buttons ->
-	// saveButton.classList.toggle("hidden");
-	// cancelButton.classList.toggle("hidden");
+	// <- Hide all buttons in the task -> //* Later removes the class in event listeners
+	const buttons = task.querySelectorAll("button");
+	buttons.forEach((button) => {
+		button.classList.add("hidden");
+	});
+
+	//? <- Show the save and cancel buttons ->
+	//? saveButton.classList.toggle("hidden");
+	//? cancelButton.classList.toggle("hidden");
 
 	// <- Convert the task to an input field and focus on it ->
 	const input = document.createElement("input");
 	input.value = text.innerText;
 	task.replaceChild(input, text);
 	input.focus();
+
+	// <- On blur, save the new text ->
+	input.addEventListener("blur", () => {
+		const text = document.createElement("p");
+		text.innerText = input.value;
+		task.replaceChild(text, input);
+		buttons.forEach((button) => {
+			button.classList.remove("hidden");
+		});
+	});
+
+	// <- On "Enter", save the new text ->
+	input.addEventListener("keydown", (e) => {
+		if (e.key === "Enter") {
+			const text = document.createElement("p");
+			text.innerText = input.value;
+			task.replaceChild(text, input);
+			buttons.forEach((button) => {
+				button.classList.remove("hidden");
+			});
+		}
+	});
 }
 
-// <===== HELPER FUNCTIONS =====>
+// <====== HELPER FUNCTIONS ======>
 
-// function saveTask(task) {
-// 	// <- Convert the input field back to a task ->
-// 	const text = document.createElement("p");
-// 	text.innerText = input.value;
-// 	task.replaceChild(text, input);
-// }
-
-// function cancelTask(task) {
-// 	// <- Convert the input field back to a task ->
-// 	const text = document.createElement("p");
-// 	text.innerText = savedText;
-// 	task.replaceChild(text, input);
-// }
-
-// <===== EVENT LISTENERS ======>
-
-// <--- Add button listener --->
-addButton.addEventListener("click", (e) => {
-	e.preventDefault();
-
-	// <- Check if the input field is empty, focus if it is ->
-	input.value === "" ? input.focus() : addTask();
-});
-
-// <--- Debug mode listener --->
-debugButton.addEventListener("click", (e) => {
-	runTests();
-
-	// <- Toggle debug mode ->
+// <--- Debug mode toggler --->
+function debug() {
 	debugMode = !debugMode;
-
-	// <- Toggle debug button text ->
 	debugButton.innerText = debugMode ? "Debug Mode: On" : "Debug Mode: Off";
 
 	// <- If debug mode is false, clear the list and input ->
 	if (!debugMode) {
 		taskList.innerHTML = "";
 		input.value = "";
+		console.clear();
 	}
+}
+
+// function saveTask(task) {
+// 	<- Convert the input field back to a task ->
+// 	const text = document.createElement("p");
+// 	text.innerText = input.value;
+// 	task.replaceChild(text, input);
+// }
+
+// function cancelTask(task) {
+// 	<- Convert the input field back to a task ->
+// 	const text = document.createElement("p");
+// 	text.innerText = savedText;
+// 	task.replaceChild(text, input);
+// }
+
+// <====== EVENT LISTENERS ======>
+
+// <--- Add button listener --->
+addButton.addEventListener("click", (e) => {
+	e.preventDefault();
+	input.value === "" ? input.focus() : addTask();
+});
+
+// <--- Debug mode listeners ---> //!not dry
+document.addEventListener("keydown", (e) => {
+	if (e.key === "Escape") {
+		debugButton.classList.toggle("hidden");
+		if (debugMode) {
+			debug();
+		}
+	}
+});
+
+debugButton.addEventListener("click", (e) => {
+	runTests();
+	debug();
 });
 
 // <====== FACTORIES! ======>
@@ -132,11 +162,8 @@ debugButton.addEventListener("click", (e) => {
 // <--- Factory for buttons --->
 function buttonFactory({ id, text, func }) {
 	const button = document.createElement("button");
-
-	// <- Assign id and text to the button ->
-	[button.id, button.innerText] = [id, text];
-
-	// <- Execute function on the button's parent element ->
+	button.id = id;
+	button.innerText = text;
 	button.addEventListener("click", (e) => func(e.target.parentElement));
 	return button;
 }

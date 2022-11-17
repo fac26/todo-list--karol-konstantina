@@ -6,11 +6,11 @@ const equal = (actual, expected, message) => {
 		: console.error("Fail: " + (message || `Expected ${expected} but received ${actual} instead`));
 };
 
-function test(name, testFunction) {
+const test = (name, testFunction) => {
 	console.group(name);
 	testFunction();
 	console.groupEnd();
-}
+};
 
 // <====== TESTS ======>
 
@@ -20,6 +20,7 @@ function runTests() {
 		input.value = "Testing Task";
 		addButton.click();
 		const task = taskList.querySelector("#task-0");
+
 		// <- Test 1.1: clear input field ->
 		test("addTask() should clear the input field", () => {
 			const result = `"${input.value}"`;
@@ -58,6 +59,7 @@ function runTests() {
 		input.value = "Completed Task";
 		addButton.click();
 		const task = taskList.querySelector("#task-1");
+
 		// <- Test 3.1: toggle completed class ->
 		test("completeTask() should toggle the completed class", () => {
 			completeTask(task);
@@ -67,6 +69,7 @@ function runTests() {
 
 			return task;
 		});
+
 		// <- Test 3.2: move task to bottom of list ->
 		test("completeTask() should move the task to the bottom of the list", () => {
 			const completeButton = task.querySelector("#complete");
@@ -82,6 +85,7 @@ function runTests() {
 		input.value = "Urgent Task";
 		addButton.click();
 		const task = taskList.querySelector("#task-2");
+
 		// <- Test 4.1: toggle urgent class ->
 		test("urgentTask() should toggle the urgent class", () => {
 			urgentTask(task);
@@ -89,6 +93,7 @@ function runTests() {
 			const expected = true;
 			equal(result, expected);
 		});
+
 		// <- Test 4.2: move task to top of list ->
 		test("urgentTask() should move the task to the top of the list", () => {
 			const urgentButton = task.querySelector("#urgent");
@@ -104,6 +109,7 @@ function runTests() {
 		input.value = "Edited Task";
 		addButton.click();
 		const task = taskList.querySelector("#task-3");
+
 		// <- Test 5.1: convert task to input field ->
 		test("editTask() should convert the task to an input field", () => {
 			const editButton = task.querySelector("#edit");
@@ -112,22 +118,6 @@ function runTests() {
 			const expected = "INPUT";
 			equal(result, expected);
 		});
-
-		// <- Test 5.2: task should save if de-focused ->
-		test("editTask() should save the task if the input field is de-focused", () => {
-			const input = task.querySelector("input");
-			input.value = "Saved Task";
-			input.blur();
-      const query = task.querySelector("p");
-			const result = inputField.value;
-			const expected = "Saved Task";
-			equal(result, expected);
-		});
-	});
-
-	// <--- Test 6: deleteTask function --->
-	test("deleteTask()", () => {
-		// <- Test 6.1: remove task from list ->
 	});
 }
 
@@ -151,7 +141,7 @@ function runTests() {
 // });
 /// let tasksArray = []; tasksArray.push(task);
 
-// BUGGY TEST
+//!Bugged!
 // test("delete Task", () => {
 // 	test("deleteTask() should remove the task from the list", () => {
 // 		const secondTask = taskList.children[1];
@@ -160,6 +150,35 @@ function runTests() {
 // 		const result = taskList.innerHTML.includes(testValue2);
 // 		const expected = false;
 // 		equal(result, expected, "Task has been removed from the list");
+// 	});
+// });
+
+//!Bugged! <- Test 5.2: task should save if de-focused ->
+// test("editTask() should save the task if the input field is de-focused", () => {
+// 	input.value = "Edited Task";
+// 	addButton.click();
+// 	const task = taskList.querySelector("#task-4");
+// 	const taskInput = task.querySelector("input");
+// 	taskInput.value = "Saved Task";
+// 	input.blur();
+// 	const result = input.value;
+// 	const expected = "Saved Task";
+// 	equal(result, expected);
+// });
+//});
+
+//!Bugged! <--- Test 6: deleteTask function --->
+// test("deleteTask()", () => {
+// 	input.value = "Deleted Task";
+// 	addButton.click();
+// 	const task = taskList.querySelector("#task-5");
+
+//  <- Test 6.1: remove task from list ->
+// 	test("deleteTask() should remove the task from the list", () => {
+// 		deleteTask(task);
+// 		const result = taskList.contains(task);
+// 		const expected = false;
+// 		equal(result, expected);
 // 	});
 // });
 
@@ -200,4 +219,4 @@ function runTests() {
 // <--- Test 13: toggleDarkMode function --->
 // test("toggleDarkMode()", () => {
 // 	<- Test 13.1: toggle dark mode ->
-// });
+// })
