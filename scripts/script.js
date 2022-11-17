@@ -1,74 +1,182 @@
 const debugButton = document.querySelector("#debug-button");
 const addButton = document.querySelector("#add-button");
-const deleteButton = document.querySelector("#delete-button");
-const completeButton = document.querySelector("#complete-button");
-const urgentButton = document.querySelector("#urgent-button");
-const editButton = document.querySelector("#edit-button");
 const input = document.querySelector("input");
-const list = document.querySelector("ul");
+const taskList = document.querySelector("ul");
 
-//  <-- debug mode - set to true to see console.log messages -->
 let debugMode = false;
 
-debugButton.addEventListener("click", (e) => {
-	//on debug button click, toggle debug mode
-	if (debugMode) {
-		debugMode = false;
-		console.log("Debug mode off");
-		debugButton.innerHTML = "Debug Mode: Off";
-	} else {
-		debugMode = true;
-		console.log("Debug mode on");
-		debugButton.innerHTML = "Debug Mode: On";
+// <====== FUNCTIONS ======>
+
+// <--- Create a new list item with buttons --->
+function createListItem(task) {
+	// <- Create the list item ->
+	const listItem = document.createElement("li");
+	const listText = document.createElement("p");
+	listItem.id = "task-" + taskList.childElementCount;
+	listText.innerText = task;
+	listItem.append(listText);
+
+	// <- Declare buttons ->
+	const buttons = [
+		{ id: "delete", text: "Delete", func: deleteTask },
+		{ id: "complete", text: "Complete", func: completeTask },
+		{ id: "urgent", text: "Urgent", func: urgentTask },
+		{ id: "edit", text: "Edit", func: editTask },
+		//? { id: "cancel", text: "Cancel", func: cancelTask },
+		//? { id: "save", text: "Save", func: saveTask },
+	];
+
+	// <- Add buttons to the new task ->
+	buttons.forEach((button) => {
+		const buttonElement = buttonFactory(button);
+		listItem.append(buttonElement);
+		//? if (button.id === "cancel" || "save") { buttonElement.classList.toggle("hidden"); }
+	});
+
+	return listItem;
+}
+
+// <--- Add a task to the corresponding listItem --->
+function addTask(task) {
+	task = input.value;
+	const listItem = createListItem(task);
+	taskList.append(listItem);
+	input.value = "";
+}
+
+// <--- Delete the task --->
+const deleteTask = (task) => {
+	task.remove();
+};
+
+// <--- Mark the task as completed --->
+const completeTask = (task) => {
+	task.classList.toggle("completed");
+	taskList.append(task);
+};
+
+// <--- Mark the task as urgent --->
+const urgentTask = (task) => {
+	task.classList.toggle("urgent");
+	taskList.prepend(task);
+};
+
+// <--- Edit the task ---> //!not dry
+function editTask(task) {
+	const text = task.querySelector("p");
+	const savedText = text.innerText;
+
+	// <- Hide all buttons in the task -> //* Later removes the class in event listeners
+	const buttons = task.querySelectorAll("button");
+	buttons.forEach((button) => {
+		button.classList.add("hidden");
+	});
+
+	//? <- Show the save and cancel buttons ->
+	//? saveButton.classList.toggle("hidden");
+	//? cancelButton.classList.toggle("hidden");
+
+	// <- Convert the task to an input field and focus on it ->
+	const input = document.createElement("input");
+	input.value = text.innerText;
+	task.replaceChild(input, text);
+	input.focus();
+
+	// <- On blur, save the new text ->
+	input.addEventListener("blur", () => {
+		const text = document.createElement("p");
+		text.innerText = input.value;
+		task.replaceChild(text, input);
+		buttons.forEach((button) => {
+			button.classList.remove("hidden");
+		});
+	});
+
+	// <- On "Enter", save the new text ->
+	input.addEventListener("keydown", (e) => {
+		if (e.key === "Enter") {
+			const text = document.createElement("p");
+			text.innerText = input.value;
+			task.replaceChild(text, input);
+			buttons.forEach((button) => {
+				button.classList.remove("hidden");
+			});
+		}
+	});
+}
+
+// <====== HELPER FUNCTIONS ======>
+
+// <--- Debug mode toggler --->
+function debug() {
+	debugMode = !debugMode;
+	debugButton.innerText = debugMode ? "Debug Mode: On" : "Debug Mode: Off";
+
+	// <- If debug mode is false, clear the list and input ->
+	if (!debugMode) {
+		taskList.innerHTML = "";
+		input.value = "";
+		console.clear();
+	}
+}
+
+// function saveTask(task) {
+// 	<- Convert the input field back to a task ->
+// 	const text = document.createElement("p");
+// 	text.innerText = input.value;
+// 	task.replaceChild(text, input);
+// }
+
+// function cancelTask(task) {
+// 	<- Convert the input field back to a task ->
+// 	const text = document.createElement("p");
+// 	text.innerText = savedText;
+// 	task.replaceChild(text, input);
+// }
+
+// <====== EVENT LISTENERS ======>
+
+// <--- Add button listener --->
+addButton.addEventListener("click", (e) => {
+	e.preventDefault();
+	input.value === "" ? input.focus() : addTask();
+});
+
+// <--- Debug mode listeners ---> //!not dry
+document.addEventListener("keydown", (e) => {
+	if (e.key === "Escape") {
+		debugButton.classList.toggle("hidden");
+		if (debugMode) {
+			debug();
+		}
 	}
 });
 
-//  <-- function to log messages to the console only in debug mode (use instead of console.log in testing) -->
-// const log = (message) => {
-// 	if (debugMode) {
-// 		console.log(message);
-// 	}
-// };
+debugButton.addEventListener("click", (e) => {
+	runTests();
+	debug();
+});
 
-//  <-- addTask function (add a task to the list) -->
+// <====== FACTORIES! ======>
 
-(function addTask(newTask) {
-	addButton.addEventListener("click", (e) => {
-		e.preventDefault();
-		if (input.value === "") {
-			alert("Please enter a task"); //convert to
-		} else {
-			newTask = list.appendChild(document.createElement("li"));
-			newTask.innerText = input.value;
-		}
-	});
-})();
+// <--- Factory for buttons --->
+function buttonFactory({ id, text, func }) {
+	const button = document.createElement("button");
+	button.id = id;
+	button.innerText = text;
+	button.addEventListener("click", (e) => func(e.target.parentElement));
+	return button;
+}
 
-//  <-- deleteTask function (delete a task from the list) -->
-
-(function deleteTask() {
-	deleteButton.addEventListener("click", (e) => {
-		e.preventDefault();
-	});
-})();
-
-//  <-- completeTask function (mark a task as complete) -->
-(function completeTask() {
-	completeButton.addEventListener("click", (e) => {
-		e.preventDefault();
-	});
-})();
-
-//  <-- urgentTask function (mark as urgent) -->
-(function urgentTask() {
-	urgentButton.addEventListener("click", (e) => {
-		e.preventDefault();
-	});
-})();
-
-//  <-- editTask function (edit the contents of a task) -->
-(function editTask() {
-	editButton.addEventListener("click", (e) => {
-		e.preventDefault();
-	});
-})();
+// <--- don't know about this one --->
+// function taskFactory()) {
+//   const task = input.value;
+// 	 if (!task) return;
+// 	 const listItem = document.createElement("li");
+// 	 const listText = document.createElement("p");
+// 	 listText.innerText = task;
+// 	 listItem.append(listText);
+//   taskList.append(listItem);
+//   input.value = "";
+//   return task;
+// }
