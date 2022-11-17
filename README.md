@@ -1,13 +1,4 @@
-## _Information for Code Review_
-
-- Tests will appear after toggling debug mode using the debug mode button.
-- The default action buttons at the bottom do nothing and should be removed later.
-- At the moment, only the delete button has full functionality. 
-- The edit button has partial functionality
-- Github pages might not be deploying properly, so just clone it and deploy locally.
-
 ## _To-do list_
-
 
 The aim of this project is to build a to-do list tracker, allowing users to create, complete and delete tasks from a list with the intention to practice test-driven development. As a minimum viable product, the app should have the following features:
 
@@ -60,23 +51,6 @@ There are 4 branches: **main, markup-and-styling, test, and function**.
 
 Test-driven development is the methodology of writing tests before your code and following an ongoing cycle of **fail, pass, and refactor.** In this section you will find the tests and methods we have used and instructions on how to execute them.
 
-<details>
-
-- Press /button/, enable debug mode,
-
-  ```js
-  window.addEventListener("keydown", (event) => {
-  ...
-  });
-  ```
-
-- Press /button/, run test 1,
-- Press /button/, run test 2, etc...
-
-</details>
-
-<div align="center">
-
 ```mermaid
     graph TD
     A[Fail]-->B[Pass]-->C[Refactor]-->A
@@ -85,6 +59,15 @@ Test-driven development is the methodology of writing tests before your code and
     style B fill:#6a8993
     style C fill:#9b5c35
 ```
+
+Instructions for testing:
+
+1. Debug button can be toggled with "ESCAPE"
+2. Open the console window with "F12"
+3. Click the debug button to display tests inside the console.
+4. Toggling the debug button or clicking it again will clear the console and any test tasks in the DOM.
+
+<div align="center">
 
 </div>
 
