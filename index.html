@@ -1,36 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="scripts/script.js" defer></script>
+		<script src="scripts/testing.js" defer></script>
+		<title>To-Do List</title>
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="style.css" />
-	<script src="scripts/script.js" defer></script>
-	<script src="scripts/testing.js" defer></script>
-	<title>To-Do List</title>
-</head>
+	<body>
+		<main>
+			<button id="debug-button" class="debug-button hidden">Debug Mode</button>
 
-<body>
-	<main>
-		<button id="debug-button" class="debug-button" hidden>Debug Mode</button>
+			<form class="add-task">
+				<label type="text" for="input">New Task:</label>
+				<input type="text" placeholder="new task" aria-label="new task" />
+				<button id="add-button" class="button add-button">Add Task</button>
+			</form>
 
-		<form class="add-task">
-			<label type="text" for="input">New Task:</label>
-			<input type="text" placeholder="new task" aria-label="new task" />
-			<button id="add-button" class="button add-button">Add Task</button>
-		</form>
-
-		<ul class="list">
-			<!-- EXAMPLE TESTING ITEM -- CHANGE TO <TEMPLATE> IN FINAL -->
-			<!-- <li class="list-item">New Task</li> -->
-		</ul>
-
-		<button id="delete-button" class="button delete-button">Delete Task</button>
-		<button id="complete-button" class="button complete-button">Complete Task</button>
-		<button id="urgent-button" class="button urgent-button">Urgent Task</button>
-		<button id="edit-button" class="button edit-button">Edit Task</button>
-	</main>
-</body>
-
+			<ul class="list"> </ul>
+		</main>
+	</body>
 </html>
