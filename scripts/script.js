@@ -18,12 +18,10 @@ function createListItem(task) {
 
 	// <- Declare buttons ->
 	const buttons = [
-		{ id: "delete", text: "Delete", func: deleteTask },
-		{ id: "complete", text: "Complete", func: completeTask },
-		{ id: "urgent", text: "Urgent", func: urgentTask },
-		{ id: "edit", text: "Edit", func: editTask },
-		//? { id: "cancel", text: "Cancel", func: cancelTask },
-		//? { id: "save", text: "Save", func: saveTask },
+		{ classList: "delete", text: "Delete", func: deleteTask },
+		{ classList: "complete", text: "Complete", func: completeTask },
+		{ classList: "urgent", text: "Urgent", func: urgentTask },
+		{ classList: "edit", text: "Edit", func: editTask },
 	];
 
 	// <- Add buttons to the new task ->
@@ -160,15 +158,19 @@ debugButton.addEventListener("click", (e) => {
 // <====== FACTORIES! ======>
 
 // <--- Factory for buttons --->
-function buttonFactory({ id, text, func }) {
+function buttonFactory({ classList, text, func }) {
 	const button = document.createElement("button");
-	button.id = id;
+  
+	// <- Assign id and text to the button ->
 	button.innerText = text;
+	button.classList.add(classList); 
+  
+	// <- Execute function on the button's parent element ->
 	button.addEventListener("click", (e) => func(e.target.parentElement));
 	return button;
 }
 
-// <--- don't know about this one --->
+// <--- don't know about this one --->F
 // function taskFactory()) {
 //   const task = input.value;
 // 	 if (!task) return;
