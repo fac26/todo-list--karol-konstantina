@@ -1,13 +1,4 @@
-## _Information for Code Review_
-
-- Tests will appear after toggling debug mode using the debug mode button.
-- The default action buttons at the bottom do nothing and should be removed later.
-- At the moment, only the delete button has full functionality. 
-- The edit button has partial functionality
-- Github pages might not be deploying properly, so just clone it and deploy locally.
-
 ## _To-do list_
-
 
 The aim of this project is to build a to-do list tracker, allowing users to create, complete and delete tasks from a list with the intention to practice test-driven development. As a minimum viable product, the app should have the following features:
 
